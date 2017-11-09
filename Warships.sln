@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.12
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Warships", "..\..\..\Downloads\Code files\CSharpClassProject-Week7\Lunch\Warships.csproj", "{FF926AD2-7C40-4D3D-B107-D027DFD5B7BE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Warships", "Warships\Warships.csproj", "{FF926AD2-7C40-4D3D-B107-D027DFD5B7BE}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2BA1C860-3408-4AB4-9B57-E0D96545484B}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B7457DCE-432A-4F86-A009-F01BC4A1219D}"
 	ProjectSection(SolutionItems) = preProject
-		..\..\..\Downloads\Code files\CSharpClassProject-Week7\README.md = ..\..\..\Downloads\Code files\CSharpClassProject-Week7\README.md
+		README.md = README.md
 	EndProjectSection
 EndProject
 Global
@@ -25,6 +25,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {2836D3F7-98CA-47D7-A848-4DE901FDAC98}
+		SolutionGuid = {6CAA2977-DEE8-4DCD-832C-D4ED7C46E0B6}
 	EndGlobalSection
 EndGlobal
