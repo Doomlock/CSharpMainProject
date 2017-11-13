@@ -1,0 +1,26 @@
+﻿@model Warships.Models.BattleViewModel
+@{
+    var isEditMode = Model.BattleId != null;
+    ViewBag.Title = isEditMode ? "Edit " + Model.BattleName : "Add Battle";
+}
+
+<h2>@Model.BattleName</h2>
+
+<div class="row">
+    <div class="col-sm-6 col-xs-10">
+        @using (Html.BeginForm(isEditMode ? "EditBattle" : "AddBattle", "Battle"))
+        {
+            @Html.HiddenFor(m => m.BattleId)
+            <div class="form-group">
+                @Html.LabelFor(m => m.BattleName)
+                @Html.TextBoxFor(m => m.BattleName, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <label for="Nation_NationId">Nation</label>
+                @Html.DropDownListFor(m => m.Nation.NationId, ViewBag.Nations as IEnumerable<SelectListItem>, new { @class = "form-control" })
+            </div>
+            <button type="submit" class="btn btn-primary">@(isEditMode ? "Save" : "Add")</button>
+            @Html.ActionLink("Cancel", "Index", null, new { @class = "btn btn-default" })
+        }
+    </div>
+</div>

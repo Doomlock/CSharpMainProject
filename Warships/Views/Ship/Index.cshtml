@@ -1,10 +1,10 @@
-﻿@model Lunch.Models.RestaurantListViewModel
+﻿@model Warships.Models.ShipListViewModel
 
 @{
-    ViewBag.Title = "Restaurants";
+    ViewBag.Title = "Ships";
 }
 
-<h2>Restaurants</h2>
+<h2>Ships</h2>
 
 <table class="table table-striped">
     <thead>
@@ -14,26 +14,26 @@
         </tr>
     </thead>
     <tbody>
-        @for (var i = 0; i < Model.Restaurants.Count; i++)
+        @for (var i = 0; i < Model.Ships.Count; i++)
         {
             <tr>
-                <td>@Model.Restaurants[i].Name</td>
+                <td>@Model.Ships[i].FullName</td>
                 <td>
-                    @Html.ActionLink("Detail", "RestaurantDetail", new { id = Model.Restaurants[i].RestaurantId })
-                    | @Html.ActionLink("Edit", "RestaurantEdit", new { id = Model.Restaurants[i].RestaurantId })
-                    | <a data-toggle="modal" href="@("#deleteRestaurantModal" + i)">Delete</a>
-                    <div class="modal fade" id="@("deleteRestaurantModal" + i)" tabindex="-1" role="dialog">
+                    @Html.ActionLink("Detail", "PersonDetail", new { id = Model.Ships[i].ShipId })
+                    | @Html.ActionLink("Edit", "PersonEdit", new { id = Model.Ships[i].ShipId })
+                    | <a data-toggle="modal" href="@("#deletePersonModal" + i)">Delete</a>
+                    <div class="modal fade" id="@("deletePersonModal" + i)" tabindex="-1" role="dialog">
                         <div class="modal-dialog">
                             <div class="modal-content">
-                                @using (Html.BeginForm("DeleteRestaurant", "Restaurant"))
+                                @using (Html.BeginForm("DeletePerson", "Person"))
                                 {
-                                    <input type="hidden" value="@Model.Restaurants[i].RestaurantId" name="RestaurantId" />
+                                    <input type="hidden" value="@Model.Ships[i].ShipId" name="ShipId" />
                                     <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                        <h4 class="modal-title">Delete @Model.Restaurants[i].Name</h4>
+                                        <h4 class="modal-title">Delete @Model.Ships[i].FullName</h4>
                                     </div>
                                     <div class="modal-body">
-                                        Are you sure you want to delete @Model.Restaurants[i].Name?
+                                        Are you sure you want to delete @Model.Ships[i].FullName?
                                     </div>
                                     <div class="modal-footer">
                                         <button type="submit" class="btn btn-primary">Yes</button>
@@ -50,8 +50,8 @@
 </table>
 
 <div class="col-sm-12 form-group">
-    <label>Total Restaurants:</label> @Model.TotalRestaurants
+    <label>Total Ships:</label> @Model.TotalShips
 </div>
 <div class="col-sm-12">
-    @Html.ActionLink("Add Restaurant", "RestaurantAdd", null, new { @class = "btn btn-primary" })
+    @Html.ActionLink("Add Ship", "ShipAdd", null, new { @class = "btn btn-primary" })
 </div>

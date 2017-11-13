@@ -11,43 +11,35 @@ namespace Warships.Controllers
         {
             using (var warshipsContext = new WarshipsContext())
             {
-                var restaurantList = new BattleListViewModel
+                var battleList = new BattleListViewModel
                 {
                     //Convert each Battle to a BattleViewModel
                     Battles = warshipsContext.Battles.Select(r => new BattleViewModel
                     {
                         BattleId = r.BattleId,
-                        Name = r.Name,
-                        Nation = new NationViewModel
-                        {
-                            NationId = r.ShipId,
-                            Name = r.Name
-                        }
+                        Name = r.BattleName,
+                        
                     }).ToList()
                 };
 
-                restaurantList.TotalBattles = restaurantList.Battles.Count;
+                battleList.TotalBattles = battleList.Battles.Count;
 
-                return View(restaurantList);
+                return View(battleList);
             }
         }
 
         public ActionResult RestaurantDetail(int id)
         {
-            using (var lunchContext = new WarshipsContext())
+            using (var warshipsContext = new WarshipsContext())
             {
-                var Battle = lunchContext.Battles.SingleOrDefault(p => p.BattleId == id);
+                var Battle = warshipsContext.Battles.SingleOrDefault(p => p.BattleId == id);
                 if (Battle != null)
                 {
                     var battleViewModel = new BattleViewModel
                     {
                         BattleId = Battle.BattleId,
-                        Name = Battle.Name,
-                        Nation = new NationViewModel
-                        {
-                            NationId = Battle.NationId,
-                            Name = Battle.Nation.Name
-                        }
+                        Name = Battle.BattleName,
+                        
                     };
 
                     return View(battleViewModel);
@@ -57,11 +49,11 @@ namespace Warships.Controllers
             return new HttpNotFoundResult();
         }
 
-        public ActionResult RestaurantAdd()
+        public ActionResult BattleAdd()
         {
-            using (var lunchContext = new WarshipsContext())
+            using (var warshipsContext = new WarshipsContext())
             {
-                ViewBag.Cuisines = lunchContext.Nations.Select(c => new SelectListItem
+                ViewBag.Cuisines = warshipsContext.Nations.Select(c => new SelectListItem
                 {
                     Value = c.NationId.ToString(),
                     Text = c.Name
@@ -74,14 +66,14 @@ namespace Warships.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddRestaurant(BattleViewModel battleViewModel)
+        public ActionResult AddBattle(BattleViewModel battleViewModel)
         {
             using (var warshipsContext = new WarshipsContext())
             {
                 var battle = new Battle
                 {
-                    Name = battleViewModel.Name,
-                    ShipId = battleViewModel.Nation.NationId.Value
+                    BattleName = battleViewModel.Name,
+                    
                 };
 
                 warshipsContext.Battles.Add(battle);
@@ -107,12 +99,8 @@ namespace Warships.Controllers
                     var battleViewModel = new BattleViewModel
                     {
                         BattleId = battle.BattleId,
-                        Name = battle.Name,
-                        Nation = new NationViewModel
-                        {
-                            NationId = battle.NationId,
-                            Name = battle.Nation.Name
-                        }
+                        Name = battle.BattleName,
+                        
                     };
 
                     return View("AddEditBattle", battleViewModel);
@@ -131,8 +119,8 @@ namespace Warships.Controllers
 
                 if (battle != null)
                 {
-                    battle.Name = battleViewModel.Name;
-                    battle.NationId = battleViewModel.Nation.NationId.Value;
+                    battle.BattleName = battleViewModel.Name;
+                    
                     warshipsContext.SaveChanges();
 
                     return RedirectToAction("Index");

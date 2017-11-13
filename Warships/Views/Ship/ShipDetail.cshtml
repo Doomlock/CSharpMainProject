@@ -1,18 +1,18 @@
-﻿@model Lunch.Models.PersonViewModel
+﻿@model Warships.Models.ShipViewModel
 @{
-    ViewBag.Title = "Person Detail";
+    ViewBag.Title = "Ship Detail";
 }
 
 <h2>@Model.FullName</h2>
 
 <div class="row">
     <div class="col-sm-12 form-group">
-        @Html.LabelFor(m => m.LastName)
-        <br />@Html.DisplayFor(m => m.LastName)
+        @Html.LabelFor(m => m.ShipTypeId)
+        <br />@Html.DisplayFor(m => m.ShipTypeId)
     </div>
     <div class="col-sm-12 form-group">
-        @Html.LabelFor(m => m.FirstName)
-        <br />@Html.DisplayFor(m => m.FirstName)
+        @Html.LabelFor(m => m.ShipName)
+        <br />@Html.DisplayFor(m => m.ShipName)
     </div>
     <div class="col-sm-12">
         @Html.ActionLink("Done", "Index", null, new { @class = "btn btn-primary" })

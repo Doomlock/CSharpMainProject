@@ -103,12 +103,12 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Web.config" />
-    <Content Include="Views\Person\Index.cshtml" />
-    <Content Include="Views\Person\PersonDetail.cshtml" />
-    <Content Include="Views\Person\AddEditPerson.cshtml" />
-    <Content Include="Views\Restaurant\Index.cshtml" />
-    <Content Include="Views\Restaurant\AddEditBattle.cshtml" />
-    <Content Include="Views\Restaurant\RestaurantDetail.cshtml" />
+    <Content Include="Views\Ship\Index.cshtml" />
+    <Content Include="Views\Ship\ShipDetail.cshtml" />
+    <Content Include="Views\Ship\AddEditShip.cshtml" />
+    <Content Include="Views\Battle\Index.cshtml" />
+    <Content Include="Views\Battle\AddEditBattle.cshtml" />
+    <Content Include="Views\Battle\BattleDetail.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

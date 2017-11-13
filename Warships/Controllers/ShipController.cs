@@ -13,12 +13,12 @@ namespace Warships.Controllers
             {
                 var shipList = new ShipListViewModel
                 {
-                    //Convert each Person to a PersonViewModel
+                    //Convert each Ship to a ShipViewModel
                     Ships = warshipContext.Ships.Select(p => new ShipViewModel
                     {
                         ShipId = p.ShipId,
-                        ClassName = p.Name,
-                        ShipName = p.ClassName
+                        ShipName = p.ShipName,
+                        ShipTypeId = p.ShipTypeId
                     }).ToList()
                 };
 
@@ -35,60 +35,60 @@ namespace Warships.Controllers
                 var ship = warshipsContext.Ships.SingleOrDefault(p => p.ShipId == id);
                 if (ship != null)
                 {
-                    var personViewModel = new ShipViewModel
+                    var ShipViewModel = new ShipViewModel
                     {
                         ShipId = ship.ShipId,
-                        ClassName = ship.Name,
-                        ShipName = ship.ClassName
+                        ShipName = ship.ShipName,
+                        ShipTypeId = ship.ShipTypeId
                     };
 
-                    return View(personViewModel);
+                    return View(ShipViewModel);
                 }
             }
 
             return new HttpNotFoundResult();
         }
 
-        public ActionResult PersonAdd()
+        public ActionResult ShipAdd()
         {
-            var personViewModel = new ShipViewModel();
+            var shipViewModel = new ShipViewModel();
 
-            return View("AddEditPerson", personViewModel);
+            return View("AddEditShip", shipViewModel);
         }
 
         [HttpPost]
-        public ActionResult AddPerson(ShipViewModel personViewModel)
+        public ActionResult AddShip(ShipViewModel ShipViewModel)
         {
-            using (var lunchContext = new WarshipsContext())
+            using (var warshipContext = new WarshipsContext())
             {
-                var person = new Ship
+                var Ship = new Ship
                 {
-                    Name = personViewModel.ClassName,
-                    ClassName = personViewModel.ShipName
+                    ShipName = ShipViewModel.ShipName,
+                    ShipTypeId = ShipViewModel.ShipTypeId
                 };
 
-                lunchContext.Ships.Add(person);
-                lunchContext.SaveChanges();
+                warshipContext.Ships.Add(Ship);
+                warshipContext.SaveChanges();
             }
 
             return RedirectToAction("Index");
         }
 
-        public ActionResult PersonEdit(int id)
+        public ActionResult ShipEdit(int id)
         {
-            using (var lunchContext = new WarshipsContext())
+            using (var warshipContext = new WarshipsContext())
             {
-                var person = lunchContext.Ships.SingleOrDefault(p => p.ShipId == id);
-                if (person != null)
+                var ship = warshipContext.Ships.SingleOrDefault(p => p.ShipId == id);
+                if (ship != null)
                 {
-                    var personViewModel = new ShipViewModel
+                    var shipViewModel = new ShipViewModel
                     {
-                        ShipId = person.ShipId,
-                        ClassName = person.Name,
-                        ShipName = person.ClassName
+                        ShipId = ship.ShipId,
+                        ShipTypeId = ship.ShipTypeId,
+                        ShipName = ship.ShipName
                     };
 
-                    return View("AddEditPerson", personViewModel);
+                    return View("AddEditShip", shipViewModel);
                 }
             }
 
@@ -96,17 +96,17 @@ namespace Warships.Controllers
         }
 
         [HttpPost]
-        public ActionResult EditPerson(ShipViewModel personViewModel)
+        public ActionResult EditShip(ShipViewModel shipViewModel)
         {
-            using (var lunchContext = new WarshipsContext())
+            using (var warshipsContext = new WarshipsContext())
             {
-                var person = lunchContext.Ships.SingleOrDefault(p => p.ShipId == personViewModel.ShipId);
+                var ship = warshipsContext.Ships.SingleOrDefault(p => p.ShipId == shipViewModel.ShipId);
 
-                if (person != null)
+                if (ship != null)
                 {
-                    person.Name = personViewModel.ClassName;
-                    person.ClassName = personViewModel.ShipName;
-                    lunchContext.SaveChanges();
+                    ship.ShipName = shipViewModel.ShipName;
+                    ship.ShipTypeId = shipViewModel.ShipTypeId;
+                    warshipsContext.SaveChanges();
 
                     return RedirectToAction("Index");
                 }
@@ -116,16 +116,16 @@ namespace Warships.Controllers
         }
 
         [HttpPost]
-        public ActionResult DeletePerson(ShipViewModel personViewModel)
+        public ActionResult DeleteShip(ShipViewModel shipViewModel)
         {
-            using (var lunchContext = new WarshipsContext())
+            using (var warshipsContext = new WarshipsContext())
             {
-                var person = lunchContext.Ships.SingleOrDefault(p => p.ShipId == personViewModel.ShipId);
+                var ship = warshipsContext.Ships.SingleOrDefault(p => p.ShipId == shipViewModel.ShipId);
 
-                if (person != null)
+                if (ship != null)
                 {
-                    lunchContext.Ships.Remove(person);
-                    lunchContext.SaveChanges();
+                    warshipsContext.Ships.Remove(ship);
+                    warshipsContext.SaveChanges();
 
                     return RedirectToAction("Index");
                 }
