@@ -127,6 +127,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201711132109000_initial.cs" />
+    <Compile Include="Migrations\201711132109000_initial.Designer.cs">
+      <DependentUpon>201711132109000_initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ShipType.cs" />
     <Compile Include="WarshipsContext.cs" />
     <Compile Include="Models\Nation.cs" />
@@ -139,7 +144,11 @@
     <Compile Include="Models\BattleViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201711132109000_initial.resx">
+      <DependentUpon>201711132109000_initial.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
