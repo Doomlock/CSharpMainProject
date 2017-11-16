@@ -17,7 +17,7 @@
         @for (var i = 0; i < Model.Battles.Count; i++)
         {
             <tr>
-                <td>@Model.Battles[i].Name</td>
+                <td>@Model.Battles[i].BattleName</td>
                 <td>
                     @Html.ActionLink("Detail", "BattleDetail", new { id = Model.Battles[i].BattleId })
                     | @Html.ActionLink("Edit", "BattleEdit", new { id = Model.Battles[i].BattleId })
@@ -30,10 +30,10 @@
                                     <input type="hidden" value="@Model.Battles[i].BattleId" name="BattleId" />
                                     <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                        <h4 class="modal-title">Delete @Model.Battles[i].Name</h4>
+                                        <h4 class="modal-title">Delete @Model.Battles[i].BattleName</h4>
                                     </div>
                                     <div class="modal-body">
-                                        Are you sure you want to delete @Model.Battles[i].Name?
+                                        Are you sure you want to delete @Model.Battles[i].BattleName?
                                     </div>
                                     <div class="modal-footer">
                                         <button type="submit" class="btn btn-primary">Yes</button>
@@ -50,8 +50,8 @@
 </table>
 
 <div class="col-sm-12 form-group">
-    <label>Total Restaurants:</label> @Model.TotalBattles
+    <label>Total Battles:</label> @Model.TotalBattles
 </div>
 <div class="col-sm-12">
-    @Html.ActionLink("Add Restaurant", "RestaurantAdd", null, new { @class = "btn btn-primary" })
+    @Html.ActionLink("Add Battle", "BattleAdd", null, new { @class = "btn btn-primary" })
 </div>

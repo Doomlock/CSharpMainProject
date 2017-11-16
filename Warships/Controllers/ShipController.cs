@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 
+
 namespace Warships.Controllers
 {
     public class ShipController : Controller
@@ -18,7 +19,8 @@ namespace Warships.Controllers
                     {
                         ShipId = p.ShipId,
                         ShipName = p.ShipName,
-                        ShipTypeId = p.ShipTypeId
+                        ShipTypeName = p.ShipType.ShipTypeName,
+                                                
                     }).ToList()
                 };
 
@@ -32,14 +34,14 @@ namespace Warships.Controllers
         {
             using (var warshipsContext = new WarshipsContext())
             {
-                var ship = warshipsContext.Ships.SingleOrDefault(p => p.ShipId == id);
+                var ship = warshipsContext.Ships.Include("ShipType").SingleOrDefault(p => p.ShipId == id);
                 if (ship != null)
                 {
                     var ShipViewModel = new ShipViewModel
                     {
                         ShipId = ship.ShipId,
                         ShipName = ship.ShipName,
-                        ShipTypeId = ship.ShipTypeId
+                        ShipTypeName = ship.ShipType.ShipTypeName
                     };
 
                     return View(ShipViewModel);
@@ -53,7 +55,22 @@ namespace Warships.Controllers
         {
             var shipViewModel = new ShipViewModel();
 
-            return View("AddEditShip", shipViewModel);
+            using (var warshipContext = new WarshipsContext())
+            {
+                var shipTypes = warshipContext.ShipTypes.Select(st => new SelectListItem
+                {
+                    Value = st.ShipTypeId.ToString(),
+                    Text = st.ShipTypeName
+
+                }).ToList();
+
+                ViewBag.ShipTypes = shipTypes;
+                
+            }
+
+
+
+                return View("AddEditShip", shipViewModel);
         }
 
         [HttpPost]
@@ -61,13 +78,13 @@ namespace Warships.Controllers
         {
             using (var warshipContext = new WarshipsContext())
             {
-                var Ship = new Ship
+                var ship = new Ship
                 {
                     ShipName = ShipViewModel.ShipName,
                     ShipTypeId = ShipViewModel.ShipTypeId
                 };
 
-                warshipContext.Ships.Add(Ship);
+                warshipContext.Ships.Add(ship);
                 warshipContext.SaveChanges();
             }
 
@@ -77,7 +94,18 @@ namespace Warships.Controllers
         public ActionResult ShipEdit(int id)
         {
             using (var warshipContext = new WarshipsContext())
-            {
+            {                
+                
+                var shipTypes = warshipContext.ShipTypes.Select(st => new SelectListItem
+                {
+                    Value = st.ShipTypeId.ToString(),
+                    Text = st.ShipTypeName
+
+                }).ToList();
+
+                ViewBag.ShipTypes = shipTypes;
+
+                
                 var ship = warshipContext.Ships.SingleOrDefault(p => p.ShipId == id);
                 if (ship != null)
                 {
@@ -90,6 +118,8 @@ namespace Warships.Controllers
 
                     return View("AddEditShip", shipViewModel);
                 }
+
+
             }
 
             return new HttpNotFoundResult();

@@ -9,8 +9,6 @@ namespace Warships
 
         public virtual DbSet<Ship> Ships { get; set; }
 
-        public virtual DbSet<Nation> Nations { get; set; }
-
         public virtual DbSet<Battle> Battles { get; set; }
 
         public virtual DbSet<ShipType> ShipTypes { get; set; }

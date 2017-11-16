@@ -6,14 +6,18 @@
 <h2>@Model.FullName</h2>
 
 <div class="row">
+    
     <div class="col-sm-12 form-group">
-        @Html.LabelFor(m => m.ShipTypeId)
-        <br />@Html.DisplayFor(m => m.ShipTypeId)
+    @Html.LabelFor(m => m.ShipName)
+    <br />@Html.DisplayFor(m => m.ShipName)
     </div>
+
+
     <div class="col-sm-12 form-group">
-        @Html.LabelFor(m => m.ShipName)
-        <br />@Html.DisplayFor(m => m.ShipName)
+        @Html.LabelFor(m => m.ShipTypeName)
+        <br />@Html.DisplayFor(m => m.ShipTypeName)
     </div>
+
     <div class="col-sm-12">
         @Html.ActionLink("Done", "Index", null, new { @class = "btn btn-primary" })
     </div>

@@ -19,13 +19,13 @@
             <tr>
                 <td>@Model.Ships[i].FullName</td>
                 <td>
-                    @Html.ActionLink("Detail", "PersonDetail", new { id = Model.Ships[i].ShipId })
-                    | @Html.ActionLink("Edit", "PersonEdit", new { id = Model.Ships[i].ShipId })
-                    | <a data-toggle="modal" href="@("#deletePersonModal" + i)">Delete</a>
-                    <div class="modal fade" id="@("deletePersonModal" + i)" tabindex="-1" role="dialog">
+                    @Html.ActionLink("Detail", "ShipDetail", new { id = Model.Ships[i].ShipId })
+                    | @Html.ActionLink("Edit", "ShipEdit", new { id = Model.Ships[i].ShipId })
+                    | <a data-toggle="modal" href="@("#deleteShipModal" + i)">Delete</a>
+                    <div class="modal fade" id="@("deleteShipModal" + i)" tabindex="-1" role="dialog">
                         <div class="modal-dialog">
                             <div class="modal-content">
-                                @using (Html.BeginForm("DeletePerson", "Person"))
+                                @using (Html.BeginForm("DeleteShip", "Ship"))
                                 {
                                     <input type="hidden" value="@Model.Ships[i].ShipId" name="ShipId" />
                                     <div class="modal-header">

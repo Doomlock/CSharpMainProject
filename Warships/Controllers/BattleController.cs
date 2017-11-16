@@ -17,7 +17,7 @@ namespace Warships.Controllers
                     Battles = warshipsContext.Battles.Select(r => new BattleViewModel
                     {
                         BattleId = r.BattleId,
-                        Name = r.BattleName,
+                        BattleName = r.BattleName,
                         
                     }).ToList()
                 };
@@ -28,7 +28,7 @@ namespace Warships.Controllers
             }
         }
 
-        public ActionResult RestaurantDetail(int id)
+        public ActionResult BattleDetail(int id)
         {
             using (var warshipsContext = new WarshipsContext())
             {
@@ -38,7 +38,7 @@ namespace Warships.Controllers
                     var battleViewModel = new BattleViewModel
                     {
                         BattleId = Battle.BattleId,
-                        Name = Battle.BattleName,
+                        BattleName = Battle.BattleName,
                         
                     };
 
@@ -49,22 +49,7 @@ namespace Warships.Controllers
             return new HttpNotFoundResult();
         }
 
-        public ActionResult BattleAdd()
-        {
-            using (var warshipsContext = new WarshipsContext())
-            {
-                ViewBag.Cuisines = warshipsContext.Nations.Select(c => new SelectListItem
-                {
-                    Value = c.NationId.ToString(),
-                    Text = c.Name
-                }).ToList();
-            }
-
-            var battleViewModel = new BattleViewModel();
-
-            return View("AddEditBattle", battleViewModel);
-        }
-
+        
         [HttpPost]
         public ActionResult AddBattle(BattleViewModel battleViewModel)
         {
@@ -72,7 +57,7 @@ namespace Warships.Controllers
             {
                 var battle = new Battle
                 {
-                    BattleName = battleViewModel.Name,
+                    BattleName = battleViewModel.BattleName,
                     
                 };
 
@@ -87,11 +72,7 @@ namespace Warships.Controllers
         {
             using (var warshipsContext = new WarshipsContext())
             {
-                ViewBag.Nations = warshipsContext.Nations.Select(c => new SelectListItem
-                {
-                    Value = c.NationId.ToString(),
-                    Text = c.Name
-                }).ToList();
+                
 
                 var battle = warshipsContext.Battles.SingleOrDefault(p => p.BattleId == id);
                 if (battle != null)
@@ -99,7 +80,7 @@ namespace Warships.Controllers
                     var battleViewModel = new BattleViewModel
                     {
                         BattleId = battle.BattleId,
-                        Name = battle.BattleName,
+                        BattleName = battle.BattleName,
                         
                     };
 
@@ -119,7 +100,7 @@ namespace Warships.Controllers
 
                 if (battle != null)
                 {
-                    battle.BattleName = battleViewModel.Name;
+                    battle.BattleName = battleViewModel.BattleName;
                     
                     warshipsContext.SaveChanges();
 

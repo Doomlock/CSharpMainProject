@@ -10,10 +10,7 @@
         @Html.LabelFor(m => m.BattleName)
         <br />@Html.DisplayFor(m => m.BattleName)
     </div>
-    <div class="col-sm-12 form-group">
-        @Html.LabelFor(m => m.Nation)
-        <br />@Html.DisplayFor(m => m.Nation.Name)
-    </div>
+    
     <div class="col-sm-12">
         @Html.ActionLink("Done", "Index", null, new { @class = "btn btn-primary" })
     </div>

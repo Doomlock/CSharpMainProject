@@ -6,13 +6,16 @@ namespace Warships.Models
     {
         public int? ShipId { get; set; }
 
+        [DisplayName("Ship Name")]
+        public string ShipName { get; set; }
+
+        [DisplayName("Ship Type")]
+        public string ShipTypeName { get; set; }
+
         [DisplayName("Ship Type")]
         public int ShipTypeId { get; set; }
 
         [DisplayName("Ship Name")]
-        public string ShipName { get; set; }
-
-        [DisplayName("Ship Name and Type")]
-        public string FullName => ShipName + " " + ShipTypeId;
+        public string FullName => ShipName ;
     }
 }

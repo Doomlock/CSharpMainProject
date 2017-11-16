@@ -8,7 +8,7 @@ namespace Warships.Models
     public class ShipType
     {
         public int ShipTypeId { get; set; }
-        public string Name { get; set; }
+        public string ShipTypeName { get; set; }
         public ICollection<Ship> Ships { get; set; }
     }
 }
