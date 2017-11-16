@@ -2,6 +2,7 @@
 
 namespace Warships.Models
 {
+    //Combines the classes to make a view model for ships
     public class ShipViewModel
     {
         public int? ShipId { get; set; }

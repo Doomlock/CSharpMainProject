@@ -91,6 +91,7 @@ namespace Warships.Controllers
             return new HttpNotFoundResult();
         }
 
+        //Allows the editing of a battle entry
         [HttpPost]
         public ActionResult EditBattle(BattleViewModel battleViewModel)
         {
@@ -111,6 +112,7 @@ namespace Warships.Controllers
             return new HttpNotFoundResult();
         }
 
+        //Allows the user to delete a battle
         [HttpPost]
         public ActionResult DeleteBattle(BattleViewModel battleViewModel)
         {

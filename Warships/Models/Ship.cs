@@ -13,7 +13,5 @@ namespace Warships.Models
         
         public ShipType ShipType { get; set; }
         public ICollection<Battle> Battles { get; set; }
-        //public ICollection<Nation> Nations { get; set; }
-        //public ICollection<ShipType> ShipTypes { get; set; }
     }
 }

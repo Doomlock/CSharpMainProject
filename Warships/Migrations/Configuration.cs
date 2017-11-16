@@ -13,6 +13,7 @@ namespace Warships.Migrations
             AutomaticMigrationsEnabled = true;
         }
 
+        //Seeding the database with ships and battles
         protected override void Seed(Warships.WarshipsContext context)
         {
 

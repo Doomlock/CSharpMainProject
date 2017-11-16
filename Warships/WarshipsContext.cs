@@ -3,6 +3,7 @@ using System.Data.Entity;
 
 namespace Warships
 {
+    //Sets the context parameters
     public class WarshipsContext : DbContext
     {
         public WarshipsContext() : base("name=Warships") { }

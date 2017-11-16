@@ -2,6 +2,7 @@
 
 namespace Warships.Models
 {
+    //Puts the battles into a list model for use
     public class BattleListViewModel
     {
         public List<BattleViewModel> Battles { get; set; }

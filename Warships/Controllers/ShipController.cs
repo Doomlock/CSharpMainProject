@@ -34,6 +34,7 @@ namespace Warships.Controllers
         {
             using (var warshipsContext = new WarshipsContext())
             {
+                //Allows the ship name and type to be displayed 
                 var ship = warshipsContext.Ships.Include("ShipType").SingleOrDefault(p => p.ShipId == id);
                 if (ship != null)
                 {
@@ -51,6 +52,8 @@ namespace Warships.Controllers
             return new HttpNotFoundResult();
         }
 
+
+        
         public ActionResult ShipAdd()
         {
             var shipViewModel = new ShipViewModel();
