@@ -38,7 +38,7 @@ namespace Warships.Controllers
                     var battleViewModel = new BattleViewModel
                     {
                         BattleId = Battle.BattleId,
-                        BattleName = Battle.BattleName,
+                        BattleName = Battle.BattleName
                         
                     };
 
@@ -49,7 +49,13 @@ namespace Warships.Controllers
             return new HttpNotFoundResult();
         }
 
-        
+        public ActionResult BattleAdd()
+        {
+            var battleViewModel = new BattleViewModel();
+            return View("AddEditBattle", battleViewModel);
+        }
+
+
         [HttpPost]
         public ActionResult AddBattle(BattleViewModel battleViewModel)
         {
@@ -57,7 +63,7 @@ namespace Warships.Controllers
             {
                 var battle = new Battle
                 {
-                    BattleName = battleViewModel.BattleName,
+                    BattleName = battleViewModel.BattleName
                     
                 };
 
